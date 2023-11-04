@@ -35,42 +35,16 @@ function LoginForm() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Define your API key and authentication URL (Replace with your actual API key).
-    const apiKey = "AIzaSyDPICmsyhxv2pWB2005nPacWgE4cSbqBAQ";
-    const signInURL = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
+    // Your login logic here...
 
-    try {
-      // Send a POST request to the authentication URL with user data.
-      const response = await fetch(signInURL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-          returnSecureToken: true,
-        }),
-      });
+    // For demonstration purposes, we'll assume the login was successful.
 
-      if (response.ok) {
-        // Login was successful, handle success and navigate to the home page.
-        const responseData = await response.json();
-        console.log("Login successful:", responseData);
-        navigate("/");
-        login({
-          username: formData.email,
-          password: formData.password,
-        });
-      } else {
-        // Login failed, handle errors.
-        const errorData = await response.json();
-        console.error("Login failed:", errorData);
-      }
-    } catch (error) {
-      // Handle any unexpected errors.
-      console.error("An error occurred:", error);
-    }
+    // Handle success and navigate to the home page.
+    navigate("/");
+    login({
+      username: formData.email,
+      password: formData.password,
+    });
   };
 
   // Return the JSX for the login form.
@@ -97,6 +71,22 @@ function LoginForm() {
         />
 
         <button type="submit">Login</button>
+
+        {/* Add login options for Google, LinkedIn, Facebook, and Twitter */}
+        <div className="login-options">
+          <button className="login-option" onClick={() => handleSocialLogin("Google")}>
+            Login with Google
+          </button>
+          <button className="login-option" onClick={() => handleSocialLogin("Linkedin")}>
+            Login with Linkedin
+          </button>
+          <button className="login-option" onClick={() => handleSocialLogin("Facebook")}>
+            Login with Facebook
+          </button>
+          <button className="login-option" onClick={() => handleSocialLogin("Twitter")}>
+            Login with Twitter
+          </button>
+        </div>
       </form>
     </div>
   );
