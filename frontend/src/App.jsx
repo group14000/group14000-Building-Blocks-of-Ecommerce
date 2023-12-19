@@ -1,7 +1,6 @@
 // Import necessary modules and components.
-import React from "react";
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Pagenavbar from "./Components/Navbar/Navbar"; // Import the navigation bar component.
 import Product from "./Components/Productcart/Product"; // Import the product component.
