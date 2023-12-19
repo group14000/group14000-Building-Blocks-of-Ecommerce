@@ -36,7 +36,7 @@ function LoginForm() {
     e.preventDefault();
 
     // Define your API key and authentication URL (Replace with your actual API key).
-    const apiKey = "AIzaSyDPICmsyhxv2pWB2005nPacWgE4cSbqBAQ";
+    const apiKey = "AIzaSyBvw4yoZfY55VNJZVyfPXORIjUnp8YU290";
     const signInURL = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
 
     try {
