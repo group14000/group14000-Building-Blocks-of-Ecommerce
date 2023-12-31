@@ -1,10 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
-const SignUpPage = () => {
+const Login = () => {
   // State to store form data
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
     password: "",
   });
@@ -22,60 +21,39 @@ const SignUpPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Save data locally (for demonstration purposes)
-    localStorage.setItem("userData", JSON.stringify(formData));
+    // Retrieve stored user data from local storage
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      const userData = JSON.parse(storedUserData);
 
-    // Display success message
-    alert("Sign-up successful!");
+      // Check if provided email and password match stored data
+      if (
+        formData.email === userData.email &&
+        formData.password === userData.password
+      ) {
+        // Display success message
+        alert("Login successful!");
+      } else {
+        // Display error message for invalid credentials
+        alert("Invalid email or password. Please try again.");
+      }
 
-    // Clear input fields
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-    });
+      // Clear input fields
+      setFormData({
+        email: "",
+        password: "",
+      });
+    } else {
+      // Display error message if no user data is found
+      alert("No user data found. Please sign up first.");
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="bg-white p-8 rounded shadow-md w-full sm:w-96">
-        <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
+        <h2 className="text-2xl font-semibold mb-4">Login</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label
-              htmlFor="firstName"
-              className="block text-sm font-medium text-gray-600"
-            >
-              First Name
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleInputChange}
-              className="mt-1 p-2 block w-full border rounded-md focus:outline-none focus:border-blue-500"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="lastName"
-              className="block text-sm font-medium text-gray-600"
-            >
-              Last Name
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleInputChange}
-              className="mt-1 p-2 block w-full border rounded-md focus:outline-none focus:border-blue-500"
-              required
-            />
-          </div>
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -114,12 +92,19 @@ const SignUpPage = () => {
             type="submit"
             className="bg-blue-500 text-white p-2 rounded-md w-full hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300"
           >
-            Sign Up
+            Login
           </button>
         </form>
+        {/* Hyperlink to Sign Up page */}
+        <p className="mt-4 text-sm text-gray-600">
+          Do not have an account?{" "}
+          <Link to="/sign-up" className="text-blue-500">
+            Sign Up
+          </Link>
+        </p>
       </div>
     </div>
   );
 };
 
-export default SignUpPage;
+export default Login;

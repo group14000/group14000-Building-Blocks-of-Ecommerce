@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Store = () => {
   const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    // Retrieve cartItems from local storage on component mount
+    const storedCartItems = localStorage.getItem("cartItems");
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
+    }
+  }, []);
 
   const products = [
     {
@@ -35,7 +43,12 @@ const Store = () => {
   ];
 
   const handleAddToCart = (product) => {
+    // Update the cartItems state
     setCartItems([...cartItems, product]);
+
+    // Save the updated cartItems to local storage
+    localStorage.setItem("cartItems", JSON.stringify([...cartItems, product]));
+
     console.log(`Added "${product.title}" to the cart`);
   };
 

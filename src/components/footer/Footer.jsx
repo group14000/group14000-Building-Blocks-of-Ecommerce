@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div className="bg-gray-800 text-white py-8">
-      <div className="container mx-auto flex flex-wrap justify-between">
+      <div className="container mx-auto flex flex-wrap justify-center md:justify-between">
         <div className="w-full md:w-1/3 mb-4 md:mb-0">
           <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
           <p className="text-gray-400">Email: info@example.com</p>
@@ -35,11 +35,11 @@ const Footer = () => {
           <p className="text-gray-400">
             Subscribe to our newsletter for updates
           </p>
-          <div className="flex mt-2">
+          <div className="flex flex-col md:flex-row mt-2">
             <input
               type="email"
               placeholder="Your Email"
-              className="p-2 w-full border border-gray-500 rounded-l focus:outline-none"
+              className="p-2 w-full md:w-auto border border-gray-500 rounded-l mb-2 md:mb-0 md:mr-2 focus:outline-none"
             />
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r">
               Subscribe
